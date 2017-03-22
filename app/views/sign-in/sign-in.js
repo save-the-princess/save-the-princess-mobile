@@ -1,5 +1,7 @@
 "use strict";
 
+let frameModule = require("ui/frame");
+
 var page;
 
 exports.loaded = (args) => {
@@ -11,3 +13,8 @@ exports.signIn = () => {
   let password = page.getViewById("password");
   alert("Signing in with username: " + username.text + " and password: " + password.text);
 };
+
+exports.signUp = () => {
+  var topmost = frameModule.topmost();
+  topmost.navigate("views/sign-up/sign-up");
+}
