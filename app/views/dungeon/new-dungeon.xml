@@ -1,0 +1,13 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <Page.actionBar>
+     <ActionBar title="New dungeon">
+       <ActionBar.actionItems>
+         <ActionItem ios.systemIcon="4" ios.position="right" tap="tap" />
+       </ActionBar.actionItems>
+     </ActionBar>
+  </Page.actionBar>
+  <StackLayout>
+    <TextField hint="name" text="{{name}}" />
+    <TextField hint="description" text="{{description}}" />
+  </StackLayout>
+</Page>

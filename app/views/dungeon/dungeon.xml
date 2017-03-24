@@ -1,0 +1,18 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:map="nativescript-mapbox" loaded="loaded">
+  <GridLayout rows="auto, *">
+    <ContentView width="100%" height="100%" row="0">
+      <map:Mapbox
+        accessToken="{{ mapboxApiKey }}"
+        mapStyle="mapbox://styles/marcoafilho/cj0nn0iqy000c2rnpsnvvmhie"
+        showUserLocation="true"
+        zoomLevel="16"
+        disableScroll="true"
+        disableZoom="true"
+        mapReady="mapReady">
+      </map:Mapbox>
+    </ContentView>
+    <AbsoluteLayout row="0" class="fab-container">
+      <Button text="&#xf100;" class="fab" tap="tap" />
+    </AbsoluteLayout>
+  </GridLayout>
+</Page>
