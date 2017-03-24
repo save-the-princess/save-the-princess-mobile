@@ -2,46 +2,28 @@ let Observable = require("data/observable").Observable;
 let firebase = require("nativescript-plugin-firebase");
 
 class AccountViewModel extends Observable {
-  constructor(object) {
+  constructor(object = {}) {
     super({
-      name: "marco",
-      email: "marco@example.com",
-      password: "password"
+      name: object.name || "",
+      email: object.email || "",
+      password: object.password || ""
     });
   }
 
   signIn() {
-    firebase
-      .login({
-        type: firebase.LoginType.PASSWORD,
-        email: this.email,
-        password: this.password
-      })
-      .then(
-        (user) => {
-          console.log("user.uid: " + user.uid)
-        },
-        (error) => {
-          alert(error);
-        }
-      );
+    return firebase.login({
+             type: firebase.LoginType.PASSWORD,
+             email: this.email,
+             password: this.password
+           });
   }
 
   signUp() {
-    firebase
-      .createUser({
-        name: this.name,
-        email: this.email,
-        password: this.password
-      })
-      .then(
-        (user) => {
-          console.log("I was able to create an user");
-        },
-        (error) => {
-          alert(error);
-        }
-      );
+    return firebase.createUser({
+             name: this.name,
+             email: this.email,
+             password: this.password
+           });
   }
 }
 
