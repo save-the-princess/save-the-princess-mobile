@@ -12,5 +12,6 @@ exports.loaded = (args) => {
 };
 
 exports.signUp = () => {
-  alert("Sign up user here");
+  account.signUp();
+  frameModule.topmost().goBack();
 };

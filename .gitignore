@@ -1,4 +1,6 @@
 node_modules
 platforms
 
+app/App_Resources/iOS/GoogleService-Info.plist
+
 .DS_Store

@@ -12,9 +12,7 @@ exports.loaded = (args) => {
 };
 
 exports.signIn = () => {
-  let username = page.getViewById("username");
-  let password = page.getViewById("password");
-  alert("Signing in with username: " + username.text + " and password: " + password.text);
+  account.signIn();
 };
 
 exports.signUp = () => {
