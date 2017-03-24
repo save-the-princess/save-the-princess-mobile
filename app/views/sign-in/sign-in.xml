@@ -1,0 +1,14 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded" class="session">
+  <StackLayout orientation="vertical">
+    <StackLayout orientation="vertical" class="logo">
+      <Label text="&#xf100;" class="image" />
+      <Label text="Save the Princess" class="h1" />
+    </StackLayout>
+    <StackLayout orientation="vertical" class="form">
+      <TextField hint="E-mail" id="email" text="{{ email }}" class="form-control" autocorrect="false" autocapitalizationType="none" />
+      <TextField hint="Password" id="password" text="{{ password }}" class="form-control" secure="true" />
+      <Button text="Sign in" tap="signIn" class="btn" />
+      <Button text="Create an account" tap="signUp" class="btn btn-link" />
+    </StackLayout>
+  </StackLayout>
+</Page>
