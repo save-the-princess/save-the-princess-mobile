@@ -3,4 +3,8 @@ var application = require("application");
 var firebase = require("nativescript-plugin-firebase");
 
 firebase.init();
-application.start({ moduleName: "views/sign-in/sign-in" });
+firebase.getCurrentUser().then((user) => {
+  application.start({ moduleName: "views/dungeon/dungeon" });
+}, () => {
+  application.start({ moduleName: "views/sign-in/sign-in" });
+});
