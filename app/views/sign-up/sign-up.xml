@@ -1,5 +1,5 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded" class="session">
-  <StackLayout orientation="vertical">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded" class="session" backgroundSpanUnderStatusBar="true">
+  <StackLayout orientation="vertical" class="sign-up">
     <StackLayout orientation="vertical" class="logo">
       <Label text="&#xf100;" class="image" />
       <Label text="Save the Princess" class="h1" />

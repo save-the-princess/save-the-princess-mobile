@@ -1,13 +1,16 @@
 "use strict";
 
+require("nativescript-status-bar").hide();
+
 let frameModule = require("ui/frame");
 let Account = require("../../view-models/account-view-model").AccountViewModel;
 
-var account = new Account();
+var account = new Account({ email: "marco@example.com", password: "password" });
 var page;
 
 var successfulSignIn = (user) => {
-  console.log("user.uid: " + user.uid);
+  var topmost = frameModule.topmost();
+  topmost.navigate({ moduleName: "views/dungeon/dungeon", clearHistory: true });
 };
 
 exports.loaded = (args) => {

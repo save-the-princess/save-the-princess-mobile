@@ -2,5 +2,6 @@ node_modules
 platforms
 
 app/App_Resources/iOS/GoogleService-Info.plist
+app/config/secrets.js
 
 .DS_Store
