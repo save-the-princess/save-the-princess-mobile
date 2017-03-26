@@ -1,7 +1,7 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded" class="session" backgroundSpanUnderStatusBar="true">
-  <StackLayout orientation="vertical" class="sign-up">
+  <StackLayout orientation="vertical">
     <StackLayout orientation="vertical" class="logo">
-      <Label text="&#xf100;" class="image" />
+      <Image src="res://Logo" class="image" />
       <Label text="Save the Princess" class="h1" />
     </StackLayout>
     <StackLayout orientation="vertical" class="form">
