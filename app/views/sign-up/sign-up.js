@@ -3,11 +3,21 @@
 let frameModule = require("ui/frame");
 let Account = require("../../view-models/account-view-model").AccountViewModel;
 
-var page;
-var account = new Account();
+let page;
+let account = new Account();
 
-var signIn = (user) => {
-  frameModule.topmost().goBack();
+let signIn = (user) => {
+  account.signIn();
+  let topmost = frameModule.topmost();
+  topmost.navigate({
+    moduleName: "views/map/map",
+    clearHistory: true,
+    animated: true,
+    transition: {
+      name: "flip"
+    }
+  });
+  account = new Account();
 };
 
 exports.loaded = (args) => {
