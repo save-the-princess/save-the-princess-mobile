@@ -1,3 +1,8 @@
+/*
+  Error color: #E84855
+  Warning color: #F9DC5C
+*/
+
 .session {
   background-image: url("res://MainBackground@3x.png");
   background-repeat: no-repeat;
@@ -76,6 +81,50 @@
   width: 70;
   height: 70;
   margin: 0 16 16 0;
+}
+
+.fab-sm {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 18;
+  color: black;
+  font-family: "Flaticon";
+  font-size: 20;
+  width: 36;
+  height: 36;
+  margin: 0 8 8 0;
+}
+
+.fab-primary {
+  color: #FFFFFF;
+  background-color: #5988FF;
+}
+
+.fab-success {
+  color: #FFFFFF;
+  background-color: #9FD356;
+  /*background-color: #A2D729;*/
+}
+
+.menu {
+  margin-right: 24;
+  margin-bottom: 90;
+  opacity: 0;
+  horizontal-align: right;
+  vertical-align: bottom;
+}
+
+.menu .fab-container {
+  horizontal-align: right;
+  vertical-align: center;
+}
+
+.menu .fab-text {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 5;
+  color: #000000;
+  font-size: 12;
+  margin: 5 8 10 0;
+  padding: 3 8 3 8;
 }
 
 .form-control {

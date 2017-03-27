@@ -6,6 +6,7 @@ let frameModule = require("ui/frame");
 let secrets = require("../../config/secrets");
 let Observable = require("data/observable").Oservable;
 let DungeonViewModel = require("../../view-models/dungeon-view-model").DungeonViewModel;
+let firebase = require("nativescript-plugin-firebase");
 
 let userLocation = { latitude: 0, longitude: 0, mapboxApiKey: secrets.mapboxApiKey, currentDungeon: (new DungeonViewModel()) };
 let page;
@@ -32,16 +33,20 @@ let hideCard = () => {
 let showCard = () => {
   let view = page.getViewById("dungeon_card");
   let fab = page.getViewById("fab");
-  return view.animate({ translate: { y: 200, x: 0 }, duration: 0 }).then(
+  return hideMenu().then(
     () => {
-      fab.animate({ backgroundColor: "#294488", rotate: 360 }).then(
+      view.animate({ translate: { y: 200, x: 0 }, duration: 0 }).then(
         () => {
-          fab.text = String.fromCharCode("0xf100");
-          fab.color = "#FFFFFF";
-          fab.animate({ backgroundColor: "#5988FF", rotate: 720 });
+          fab.animate({ backgroundColor: "#294488", rotate: 360 }).then(
+            () => {
+              fab.text = String.fromCharCode("0xf100");
+              fab.color = "#FFFFFF";
+              fab.animate({ backgroundColor: "#5988FF", rotate: 720 });
+            }
+          );
+          view.animate({ translate: { y: 0, x: 0 }, opacity: 1 });
         }
-      );
-      view.animate({ translate: { y: 0, x: 0 }, opacity: 1 });
+      )
     }
   );
 }
@@ -58,20 +63,12 @@ let selectDungeon = (marker) => {
   showCard();
 };
 
-let tap = (args) => {
-  let button = args.object;
+let gotoCreateDungeon = (args) => {
   let navigationEntry = {
     moduleName: "views/new-dungeon/new-dungeon",
     context: page.bindingContext
   };
-  button
-    .animate({ rotate: 380, duration: 300 })
-    .then(() => {
-      button.rotate = 0;
-      setTimeout(() => {
-        frameModule.topmost().navigate(navigationEntry);
-      }, 200);
-  });
+  frameModule.topmost().navigate(navigationEntry);
 };
 
 let setCenterInUserLocation = (location) => {
@@ -116,4 +113,48 @@ exports.mapReady = (args) => {
     .then(setCenterInUserLocation)
 };
 
-exports.tap = tap;
+exports.logout = (args) => {
+  let topmost = frameModule.topmost();
+  firebase.logout();
+  topmost.navigate({
+    moduleName: "views/sign-in/sign-in",
+    clearHistory: true,
+    animated: true,
+    transition: {
+      name: "flip"
+    }
+  });
+};
+
+let hideMenu = () => {
+  let button = page.getViewById("fab");
+  let menu = page.getViewById("floating_menu");
+  if (!page.isMenuOpen) { return Promise.resolve(); }
+
+  page.isMenuOpen = false;
+  return button
+    .animate({ rotate: -360 })
+    .then(() => {
+      button.rotate = 0;
+      menu.animate({ opacity: 0 });
+  });
+}
+
+exports.showMenu = (args) => {
+  let button = args.object;
+  let menu = page.getViewById("floating_menu");
+
+  if (page.isMenuOpen) {
+    hideMenu();
+    return;
+  }
+  page.isMenuOpen = true;
+  return button
+    .animate({ rotate: 360 })
+    .then(() => {
+      button.rotate = 0;
+      menu.animate({ opacity: 1 });
+  });
+}
+
+exports.gotoCreateDungeon = gotoCreateDungeon;
