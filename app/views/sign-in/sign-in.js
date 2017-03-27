@@ -9,7 +9,7 @@ var account = new Account({ email: "marco@example.com", password: "password" });
 var page;
 
 var successfulSignIn = (user) => {
-  var topmost = frameModule.topmost();
+  let topmost = frameModule.topmost();
   topmost.navigate({
     moduleName: "views/map/map",
     clearHistory: true,
@@ -30,6 +30,6 @@ exports.signIn = () => {
 };
 
 exports.signUp = () => {
-  var topmost = frameModule.topmost();
+  let topmost = frameModule.topmost();
   topmost.navigate("views/sign-up/sign-up");
 }
