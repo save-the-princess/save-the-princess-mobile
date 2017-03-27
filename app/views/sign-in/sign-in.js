@@ -10,7 +10,14 @@ var page;
 
 var successfulSignIn = (user) => {
   var topmost = frameModule.topmost();
-  topmost.navigate({ moduleName: "views/dungeon/dungeon", clearHistory: true });
+  topmost.navigate({
+    moduleName: "views/map/map",
+    clearHistory: true,
+    animated: true,
+    transition: {
+      name: "flip"
+    }
+  });
 };
 
 exports.loaded = (args) => {

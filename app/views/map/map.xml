@@ -1,0 +1,24 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:map="nativescript-mapbox" loaded="loaded" navigatingTo="onNavigatingTo">
+  <GridLayout rows="auto">
+    <ContentView width="100%" height="100%">
+      <map:Mapbox
+        accessToken="{{ mapboxApiKey }}"
+        mapStyle="mapbox://styles/marcoafilho/cj0nn0iqy000c2rnpsnvvmhie"
+        showUserLocation="true"
+        zoomLevel="16"
+        disableScroll="true"
+        disableZoom="true"
+        mapReady="mapReady">
+      </map:Mapbox>
+    </ContentView>
+    <AbsoluteLayout id="dungeon_card" class="card-container">
+      <GridLayout rows="30, 90" columns="250" class="card">
+        <Label text="{{ currentDungeon.name }}" class="card-title" textWrap="true" />
+        <Label text="{{ currentDungeon.description }}" class="card-description" textWrap="true" row="1" />
+      </GridLayout>
+    </AbsoluteLayout>
+    <AbsoluteLayout class="fab-container">
+      <Button text="&#xf101;" id="fab" class="fab" tap="tap" />
+    </AbsoluteLayout>
+  </GridLayout>
+</Page>
