@@ -13,6 +13,10 @@ var signIn = (user) => {
 exports.loaded = (args) => {
   page = args.object;
   page.bindingContext = account;
+  let controller = frameModule.topmost().ios.controller;
+  let navBar = controller.navigationBar;
+  navBar.shadowImage = new UIImage();
+  navBar.setBackgroundImageForBarMetrics(new UIImage(), UIBarMetrics.UIBarMetricsDefault);
 };
 
 exports.signUp = () => {

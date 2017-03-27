@@ -1,4 +1,7 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded" class="session" backgroundSpanUnderStatusBar="true">
+  <Page.actionBar>
+      <ActionBar />
+  </Page.actionBar>
   <StackLayout orientation="vertical">
     <StackLayout orientation="vertical" class="logo">
       <Image src="res://Logo" class="image" />

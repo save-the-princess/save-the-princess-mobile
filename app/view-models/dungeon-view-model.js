@@ -7,8 +7,15 @@ class DungeonViewModel extends Observable {
       name: object.name || "",
       description: object.description || "",
       latitude: object.latitude || 0,
-      longitude: object.longitude || 0
+      longitude: object.longitude || 0,
+      icon: "res://Markers/Castle"
     });
+  }
+
+  randomizePositionInRadius(maxRadius) {
+    let radians = Math.random() * 2 * Math.PI;
+    this.latitude += maxRadius * Math.sin(radians);
+    this.longitude += maxRadius * Math.cos(radians);
   }
 
   save() {

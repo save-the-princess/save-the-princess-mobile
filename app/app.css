@@ -40,6 +40,28 @@
   padding: 0;
 }
 
+.card-container {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 2;
+  margin: 0 10 10 10;
+  opacity: 0;
+  vertical-align: bottom;
+}
+
+.card {
+  padding: 15 15 0 15;
+}
+
+.card-title {
+  font-size: 20;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 14;
+  vertical-align: top;
+}
+
 .fab-container {
   horizontal-align: right;
   vertical-align: bottom;
@@ -65,4 +87,27 @@
   margin: 8 30;
   opacity: 0.75;
   padding: 5 10;
+}
+
+.form-control-image {
+  border-width: 1;
+  border-color: #AEAEAE;
+  border-radius: 30;
+  margin: 20 15;
+  width: 60;
+  height: 60;
+  horizontal-align: center;
+  vertical-align: center;
+}
+
+.form-control-classic {
+  border-width: 0 0 1 0;
+  border-color: #AEAEAE;
+  margin: 15 15 55 15;
+  padding: 0 15;
+}
+
+.form-control-classic Label {
+  color: #ADADAD;
+  font-size: 12;
 }

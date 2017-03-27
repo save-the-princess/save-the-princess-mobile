@@ -1,0 +1,19 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <Page.actionBar>
+     <ActionBar title="New Dungeon">
+       <ActionBar.actionItems>
+         <ActionItem ios.systemIcon="0" ios.position="right" tap="onDone" />
+       </ActionBar.actionItems>
+     </ActionBar>
+  </Page.actionBar>
+  <StackLayout>
+    <GridLayout columns="auto, *" rows="auto, 200">
+      <Image src="{{icon}}" class="form-control-image" />
+      <TextField col="1" hint="Name" text="{{name}}" class="form-control-classic" />
+      <StackLayout row="2" colSpan="2" class="form-control-classic">
+        <Label text="Description" />
+        <TextView text="{{description}}" height="150" />
+      </StackLayout>
+    </GridLayout>
+  </StackLayout>
+</Page>
