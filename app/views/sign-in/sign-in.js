@@ -5,8 +5,8 @@ require("nativescript-status-bar").hide();
 let frameModule = require("ui/frame");
 let Account = require("../../view-models/account-view-model").AccountViewModel;
 
-var account = new Account({ email: "marco@example.com", password: "password" });
-var page;
+let account = new Account();
+let page;
 
 var successfulSignIn = (user) => {
   let topmost = frameModule.topmost();
@@ -18,6 +18,7 @@ var successfulSignIn = (user) => {
       name: "flip"
     }
   });
+  account = new Account();
 };
 
 exports.loaded = (args) => {
