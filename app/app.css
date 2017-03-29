@@ -1,10 +1,5 @@
-/*
-  Error color: #E84855
-  Warning color: #F9DC5C
-*/
-
 .session {
-  background-image: url("res://MainBackground@3x.png");
+  background-image: url("res://MainBackground.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -72,6 +67,18 @@
   vertical-align: bottom;
 }
 
+.fi {
+  font-family: "Flaticon";
+}
+
+.fi-back {
+  transform: rotate(180deg);
+}
+
+.fi-primary {
+  color: #5988FF;
+}
+
 .fab {
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 35;
@@ -102,7 +109,16 @@
 .fab-success {
   color: #FFFFFF;
   background-color: #9FD356;
-  /*background-color: #A2D729;*/
+}
+
+.fab-warning {
+  color: #FFFFFF;
+  background-color: #F9DC5C;
+}
+
+.fab-danger {
+  color: #FFFFFF;
+  background-color: #E84855;
 }
 
 .menu {
@@ -159,4 +175,119 @@
 .form-control-classic Label {
   color: #ADADAD;
   font-size: 12;
+}
+
+.avatar {
+  margin: 15 10 10 15;
+  border-color: #AEAEAE;
+  border-radius: 64;
+  border-width: 1;
+  width: 128;
+  height: 128;
+}
+
+.avatar-background {
+  margin: 15 10 10 15;
+  border-radius: 64;
+  background-image: url("res://CitySmall");
+  opacity: 0.90;
+  width: 128;
+  height: 128;
+}
+
+.avatar-idle-1 {
+  background-position: -30 0;
+}
+
+.avatar-idle-2 {
+  background-position: 166 0;
+}
+
+.avatar-idle-3 {
+  background-position: 362 0;
+}
+
+.avatar-idle-4 {
+  background-position: 558 0;
+}
+
+.avatar-big.avatar-idle-1 {
+  background-position: -70 -40;
+}
+
+.avatar-big.avatar-idle-2 {
+  background-position: 186 -40;
+}
+
+.avatar-big.avatar-idle-3 {
+  background-position: 442 -40;
+}
+
+.avatar-big.avatar-idle-4 {
+  background-position: 698 -40;
+}
+
+.attribute-selection Label {
+  height: 45;
+  margin: 0 15 0 15;
+}
+
+.avatar-controls {
+  margin-top: 10;
+  horizontal-align: center;
+  vertical-align: center;
+}
+
+.avatar-controls .fi-next {
+  margin-left: 110;
+}
+
+.avatar-controls .fi-back {
+  margin-left: 5;
+}
+
+.character-info {
+  width: 100%;
+}
+
+.text-input {
+  border-bottom-width: 1;
+  border-bottom-color: #AEAEAE;
+  margin: 15 15 10 10;
+  padding: 0 10;
+}
+
+.text-view {
+  border-bottom-width: 1;
+  border-bottom-color: #AEAEAE;
+  height: 70;
+  margin: 15 15 10 10;
+  padding: 0 10;
+}
+
+.alert {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10;
+  horizontal-align: center;
+  vertical-align: center;
+  width: 100%;
+}
+
+.alert-danger {
+  background-color: #E84855;
+  color: #FFFFFF;
+}
+
+.new-character {
+  background-image: url("res://City");
+}
+
+.character-container {
+  background-color: rgba(255, 255, 255, 0.75);
+  margin: 10;
+  border-radius: 2;
+}
+
+.attribute-selection {
+  padding: 15 5;
 }

@@ -7,6 +7,7 @@ let secrets = require("../../config/secrets");
 let Observable = require("data/observable").Oservable;
 let DungeonViewModel = require("../../view-models/dungeon-view-model").DungeonViewModel;
 let firebase = require("nativescript-plugin-firebase");
+let timer = require("timer");
 
 let userLocation = { latitude: 0, longitude: 0, mapboxApiKey: secrets.mapboxApiKey, currentDungeon: (new DungeonViewModel()) };
 let page;
@@ -16,32 +17,62 @@ let dungeons;
 let hideCard = () => {
   let view = page.getViewById("dungeon_card");
   let fab = page.getViewById("fab");
+  if (view.opacity === 0) { return Promise.resolve(); }
+  fab.off("tap");
   return view.animate({ translate: { y: 0, x: 0 } }).then(
     () => {
-      fab.animate({ backgroundColor: "#294488", rotate: -360 }).then(
+      fab.animate({ backgroundColor: "#822428", rotate: -360 }).then(
         () => {
           fab.text = String.fromCharCode("0xf101");
           fab.color = "#000000";
-          fab.animate({ backgroundColor: "#FFFFFF", rotate: -720, opacity: 0.75 });
+          fab.animate({ backgroundColor: "#FFFFFF", rotate: -720, opacity: 0.75 }).then(
+            () => {
+              fab.on("tap", showMenu);
+              fab.rotate = 0;
+            }
+          );
         }
       );
       view.animate({ translate: { y: 200, x: 0 }, opacity: 0 });
     }
   );
+};
+
+let delayedHideCard = () => {
+  page.isDungeonTapped = false;
+  return new Promise((resolve) => { timer.setTimeout(resolve, 100); })
+               .then(() => { if (!page.isDungeonTapped) { hideCard(); } });
+};
+
+let startRaid = () => {
+  let topmost = frameModule.topmost();
+  topmost.navigate({
+    moduleName: "views/new-raid/new-raid",
+    animate: true,
+    transition: {
+      name: "slideBottom"
+    }
+  });
 }
 
 let showCard = () => {
   let view = page.getViewById("dungeon_card");
   let fab = page.getViewById("fab");
+  fab.off("tap");
   return hideMenu().then(
     () => {
       view.animate({ translate: { y: 200, x: 0 }, duration: 0 }).then(
         () => {
-          fab.animate({ backgroundColor: "#294488", rotate: 360 }).then(
+          fab.animate({ backgroundColor: "#822428", rotate: 360 }).then(
             () => {
               fab.text = String.fromCharCode("0xf100");
               fab.color = "#FFFFFF";
-              fab.animate({ backgroundColor: "#5988FF", rotate: 720 });
+              fab.animate({ backgroundColor: "#E84855", rotate: 720 }).then(
+                () => {
+                  fab.on("tap", startRaid);
+                  fab.rotate = 0;
+                }
+              );
             }
           );
           view.animate({ translate: { y: 0, x: 0 }, opacity: 1 });
@@ -52,6 +83,7 @@ let showCard = () => {
 }
 
 let selectDungeon = (marker) => {
+  page.isDungeonTapped = true;
   let view = page.getViewById("dungeon_card");
   let currentDungeon = dungeons[marker.id];
   if (view.opacity > 0 && userLocation.currentDungeon.get("name") === currentDungeon.name) {
@@ -140,7 +172,7 @@ let hideMenu = () => {
   });
 }
 
-exports.showMenu = (args) => {
+let showMenu = (args) => {
   let button = args.object;
   let menu = page.getViewById("floating_menu");
 
@@ -157,4 +189,18 @@ exports.showMenu = (args) => {
   });
 }
 
+let gotoSquad = () => {
+  frameModule.topmost().navigate({
+    moduleName: "views/squad/squad",
+    animated: true,
+    transition: {
+      name: "slideLeft"
+    }
+  });
+};
+
 exports.gotoCreateDungeon = gotoCreateDungeon;
+exports.delayedHideCard = delayedHideCard;
+exports.showMenu = showMenu;
+exports.startRaid = startRaid;
+exports.gotoSquad = gotoSquad;

@@ -3,5 +3,5 @@ if (global.TNS_WEBPACK) {
     require("bundle-entry-points");
 
     //register application modules
-    global.registerModule("main-page", function () { return require("./main-page"); });
+    global.registerModule("save-the-princess-utils", function () { return require("./shared/save-the-princess-utils"); });
 }
