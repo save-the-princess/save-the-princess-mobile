@@ -189,7 +189,18 @@ let showMenu = (args) => {
   });
 }
 
+let gotoSquad = () => {
+  frameModule.topmost().navigate({
+    moduleName: "views/squad/squad",
+    animated: true,
+    transition: {
+      name: "slideLeft"
+    }
+  });
+};
+
 exports.gotoCreateDungeon = gotoCreateDungeon;
 exports.delayedHideCard = delayedHideCard;
 exports.showMenu = showMenu;
 exports.startRaid = startRaid;
+exports.gotoSquad = gotoSquad;

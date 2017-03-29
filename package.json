@@ -1,8 +1,8 @@
 {
-  "description": "NativeScript Application",
+  "description": "Save the Princess Mobile Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "repository": "https://github.com/save-the-princess/save-the-princess-mobile",
   "nativescript": {
     "id": "org.nativescript.SaveThePrincess",
     "tns-ios": {
@@ -10,6 +10,8 @@
     }
   },
   "dependencies": {
+    "lodash": "^4.17.4",
+    "nativescript-dom": "^1.0.9",
     "nativescript-geolocation": "0.0.19",
     "nativescript-mapbox": "^2.6.0",
     "nativescript-plugin-firebase": "^3.11.1",

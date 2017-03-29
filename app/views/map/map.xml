@@ -14,12 +14,16 @@
     <AbsoluteLayout id="floating_menu" class="menu">
       <StackLayout>
         <StackLayout orientation="horizontal" class="fab-container">
+          <Button text="Squad" class="fab-text" tap="gotoSquad" />
+          <Button text="&#xf103;" class="fab-sm fab-warning" tap="gotoSquad" />
+        </StackLayout>
+        <StackLayout orientation="horizontal" class="fab-container">
           <Button text="Create dungeon" class="fab-text" tap="gotoCreateDungeon" />
           <Button text="&#xf102;" class="fab-sm fab-success" tap="gotoCreateDungeon" />
         </StackLayout>
         <StackLayout orientation="horizontal" class="fab-container">
           <Button text="Logout" class="fab-text" tap="logout" />
-          <Button text="&#xf103;" class="fab-sm fab-primary" tap="logout" />
+          <Button text="&#xf104;" class="fab-sm fab-primary" tap="logout" />
         </StackLayout>
       </StackLayout>
     </AbsoluteLayout>

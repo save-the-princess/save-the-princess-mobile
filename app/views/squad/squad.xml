@@ -1,0 +1,9 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoad">
+  <Page.actionBar>
+     <ActionBar title="Squad">
+       <ActionBar.actionItems>
+         <ActionItem ios.systemIcon="4" ios.position="right" tap="onAdd" />
+       </ActionBar.actionItems>
+     </ActionBar>
+  </Page.actionBar>
+</Page>

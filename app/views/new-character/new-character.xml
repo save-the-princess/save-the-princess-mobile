@@ -1,0 +1,46 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoad" class="new-character">
+  <Page.actionBar>
+     <ActionBar title="New Character">
+       <ActionBar.actionItems>
+         <ActionItem ios.systemIcon="0" ios.position="right" tap="onDone" />
+       </ActionBar.actionItems>
+     </ActionBar>
+  </Page.actionBar>
+  <StackLayout>
+    <StackLayout orientation="horizontal" class="character-container">
+      <GridLayout rows="auto" columns="auto">
+        <AbsoluteLayout class="avatar-background"></AbsoluteLayout>
+        <Image id="avatar" class="avatar avatar-idle-1" backgroundImage="{{ avatar }}" />
+        <AbsoluteLayout class="avatar-controls">
+          <Label text="&#xf105;" class="fi fi-back fi-primary" tap="onShowPreviousAvatar" />
+          <Label text="&#xf105;" class="fi fi-next fi-primary" tap="onShowNextAvatar" />
+        </AbsoluteLayout>
+      </GridLayout>
+      <StackLayout class="character-info">
+        <TextField hint="Name" text="{{ name }}" col="1" class="text-input" />
+        <TextView hint="Bio" text="{{ biography }}" row="1" col="1" class="text-view" />
+      </StackLayout>
+    </StackLayout>
+    <StackLayout orientation="horizontal" id="available_points_alert" class="alert">
+      <Label text="Points Available: " />
+      <Label text="{{ availablePoints - points }}" />
+    </StackLayout>
+    <GridLayout rows="auto, auto, auto, auto, auto" columns="125, *, 40"  class="character-container attribute-selection">
+      <Label text="Power" />
+      <Slider value="{{ power }}" col="1" minValue="0" maxValue="5" />
+      <Label text="{{ power }}" col="2" />
+      <Label text="Skill" row="1" />
+      <Slider value="{{ skill }}" row="1" col="1" minValue="0" maxValue="5" />
+      <Label text="{{ skill }}" row="1" col="2" />
+      <Label text="Resistance" row="2" />
+      <Slider value="{{ resistance }}" row="2" col="1" minValue="0" maxValue="5" />
+      <Label text="{{ resistance }}" row="2" col="2" />
+      <Label text="Armor" row="3" />
+      <Slider value="{{ armor }}" row="3" col="1" minValue="0" maxValue="5" />
+      <Label text="{{ armor }}" row="3" col="2" />
+      <Label text="Fire Power" row="4" />
+      <Slider value="{{ firePower }}" row="4" col="1" minValue="0" maxValue="5" />
+      <Label text="{{ firePower }}" row="4" col="2" />
+    </GridLayout>
+  </StackLayout>
+</Page>
