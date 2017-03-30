@@ -1,21 +1,12 @@
 require("nativescript-dom");
-let _ = require("../../shared/utils");
+let _ = require("lodash");
+let frame = require("ui/frame");
 let CharacterViewModel = require("../../view-models/character-view-model").CharacterViewModel;
 
-
 let timer = require("timer");
-let character = new CharacterViewModel({ name: "Marc", power: 3, skill: 3, resistance: 3, armor: 1 });
+let character;
 
 let page;
-
-character.addEventListener(CharacterViewModel.propertyChangeEvent, (changedData) => {
-  let alert = page.getViewById("available_points_alert");
-  if (character.get("availablePoints") < character.get("points")) {
-    alert.classList.add("alert-danger");
-  } else {
-    alert.classList.remove("alert-danger");
-  }
-});
 
 let animateAvatar = () => {
   let sprite = page.getElementById("avatar");
@@ -32,20 +23,32 @@ let animateAvatar = () => {
   }, 150);
 }
 
+let loadCharacter = () => {
+  character = new CharacterViewModel();
+  character.addEventListener(CharacterViewModel.propertyChangeEvent, (changedData) => {
+    let alert = page.getViewById("available_points_alert");
+    if (character.get("availablePoints") < 0) {
+      alert.classList.add("alert-danger");
+    } else {
+      alert.classList.remove("alert-danger");
+    }
+  });
+
+  return character;
+}
+
 let load = (args) => {
+  character = loadCharacter();
   page = args.object;
   page.bindingContext = character;
   animateAvatar();
 }
 
 let done = () => {
+  console.dump(character);
   return character.save().then(
-    () => {
-      console.log("ok");
-    },
-    (error) => {
-      alert(error);
-    }
+    () => { frame.topmost().goBack(); },
+    alert
   );
 }
 

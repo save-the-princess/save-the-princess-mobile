@@ -186,11 +186,30 @@
   height: 128;
 }
 
+.avatar-sm {
+  border-radius: 44;
+  width: 88;
+  height: 88;
+}
+
+.avatar-image {
+  clip-path: inset(0 75% 0 0);
+  transform: translateX(240), scale(5);
+  horizontal-align: center;
+  vertical-align: center;
+  width: 128;
+  height: 128;
+}
+
+.avatar-sm .avatar-image {
+  transform: translateX(295), scale(8.5);
+}
+
 .avatar-background {
   margin: 15 10 10 15;
   border-radius: 64;
   background-image: url("res://CitySmall");
-  opacity: 0.90;
+  opacity: 0.75;
   width: 128;
   height: 128;
 }
@@ -276,6 +295,7 @@
 .alert-danger {
   background-color: #E84855;
   color: #FFFFFF;
+  font-weight: bold;
 }
 
 .new-character {
@@ -290,4 +310,23 @@
 
 .attribute-selection {
   padding: 15 5;
+}
+
+.character-list-item {
+  padding: 15;
+}
+
+.character-list-item-title {
+  font-weight: bold;
+  font-size: 22;
+  padding-bottom: 5;
+}
+
+.character-list-item-container {
+  margin-bottom: 5;
+}
+
+.activity-indicator {
+  color: #5988FF;
+  transform: scale(3);
 }

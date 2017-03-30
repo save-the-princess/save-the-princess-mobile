@@ -7,7 +7,7 @@ class CharacterViewModel extends Observable {
       name: object.name || "",
       biography: object.biography || "",
       avatar: object.avatar || "res://Characters/01",
-      points: object.points || 0,
+      points: object.points || 10,
       availablePoints: object.availablePoints || 10,
       power: object.power || 0,
       skill: object.skill || 0,
@@ -18,8 +18,9 @@ class CharacterViewModel extends Observable {
       maxHealthPoints: object.maxHealthPoints || 0,
       currentMagicPoints: object.currentMagicPoints || 0,
       maxMagicPoints: object.maxMagicPoints || 0,
-      experience: object.experience || 0,
+      experience: object.experience || 0
     });
+    this.errors = [];
     this.usePoints();
     this.handlePropertyChangeEvents();
   }
@@ -35,10 +36,12 @@ class CharacterViewModel extends Observable {
   }
 
   save() {
-    return this.beforeSave().then(
-      firebase.push("/characters", this.toJSON()),
-      (error) => { throw error; }
-    );
+    this.beforeSave()
+    if (!this.get("errors").length) {
+      return firebase.push("characters", this.toJSON());
+    } else {
+      return Promise.reject(this.get("errors")[0]);
+    }
   }
 
   avatarIsBig() {
@@ -46,34 +49,34 @@ class CharacterViewModel extends Observable {
   }
 
   beforeSave() {
-    return Promise.all([
-      this.calculate("healthPoints"), this.calculate("MagicPoints"),
-      this.validatePresenceOf("name"), this.validatePointUsage()
-    ]);
+    this.errors = [];
+    this.calculate("HealthPoints")
+    this.calculate("MagicPoints")
+    this.validatePresenceOf("name")
+    this.validatePointUsage()
   }
 
   calculate(attribute) {
-    return new Promise(() => {
-      let healthPoints = this.get("resistance") * 5;
-      this.set(`current${attribute}`, healthPoints);
-      this.set(`max${attribute}`, healthPoints);
-    });
+    let healthPoints = this.get("resistance") * 5;
+    this.set(`current${attribute}`, healthPoints);
+    this.set(`max${attribute}`, healthPoints);
+    return true;
   }
 
   validatePresenceOf(attribute) {
-    return new Promise(() => {
-      if (this.get(attribute) === "") {
-        throw `Character should have a ${attribute}.`;
-      }
-    });
+    if (this.get(attribute) === "") {
+      this.errors.push("Name should not be empty.");
+      return false;
+    }
+    return true;
   }
 
   validatePointUsage() {
-    return new Promise(() => {
-      if (this.get("points") > this.get("availablePoints")) {
-        throw "Points spent should not be more than the available.";
-      }
-    });
+    if (this.get("availablePoints") < 0) {
+      this.errors.push("Available points should not be below 0.");
+      return false;
+    }
+    return true;
   }
 
   handlePropertyChangeEvents() {
@@ -91,15 +94,16 @@ class CharacterViewModel extends Observable {
   }
 
   usePoints() {
-    this.set("points", this.attributes().reduce((a, e) => {
-      return a + this[e];
-    }, 0));
+    this.set("availablePoints", this.attributes().reduce((a, e) => {
+      return a - this[e];
+    }, this.get("points")));
   }
 
   toJSON() {
     return {
       name: this.get("name"),
       biography: this.get("biography"),
+      avatar: this.get("avatar"),
       points: this.get("points"),
       availablePoints: this.get("availablePoints"),
       power: this.get("power"),
