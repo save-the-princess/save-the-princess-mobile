@@ -1,13 +1,32 @@
+let _ = require("lodash");
 let frame = require("ui/frame");
-let _ = require("../../shared/utils");
+let observableModule = require("data/observable");
+let SquadViewModel = require("../../view-models/squad-view-model").SquadViewModel;
 
 let page;
+let squad = new SquadViewModel([]);
+let pageData = new observableModule.fromObject({
+  squad: squad
+});
 
-let onLoad = (args) => {
+let load = (args) => {
   page = args.object;
+  page.bindingContext = pageData;
+  squad.empty();
+  pageData.set("isLoading", true);
+  squad.all().then(
+    () => {
+      let squadView = page.getViewById("squad");
+      squadView.animate({ opacity: 0.75 });
+      pageData.set("isLoading", false);
+    },
+    (error) => {
+      alert(error)
+    }
+  );
 };
 
-let onAdd = () => {
+let add = () => {
   frame.topmost().navigate({
     moduleName: "views/new-character/new-character",
     animated: true,
@@ -18,7 +37,8 @@ let onAdd = () => {
 };
 
 let SquadView = {
-  onLoad: onLoad,
-  onAdd: onAdd,
+  onLoad: load,
+  onAdd: add
 };
+
 exports = _.extend(exports, SquadView);

@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoad">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoad" class="new-character">
   <Page.actionBar>
      <ActionBar title="Squad">
        <ActionBar.actionItems>
@@ -6,4 +6,41 @@
        </ActionBar.actionItems>
      </ActionBar>
   </Page.actionBar>
+  <GridLayout rows="*" colums="auto">
+    <ListView id="squad" items="{{ squad }}" opacity="0">
+      <ListView.itemTemplate>
+        <StackLayout orientation="horizontal">
+          <StackLayout class="avatar avatar-sm">
+            <Image class="avatar-image" src="{{ avatar }}" />
+          </StackLayout>
+          <StackLayout orientation="vertical" class="character-list-item">
+            <Label text="{{ name }}" class="character-list-item-title" />
+            <GridLayout rows="auto" columns="*, *">
+              <StackLayout orientation="horizontal" class="character-list-item-container">
+                <Label text="HP " />
+                <Label text="{{ currentHealthPoints + '/' + maxHealthPoints }}" />
+              </StackLayout>
+              <StackLayout orientation="horizontal" col="1">
+                <Label text="MP " />
+                <Label text="{{ currentMagicPoints + '/' + maxMagicPoints }}" />
+              </StackLayout>
+            </GridLayout>
+            <StackLayout orientation="horizontal">
+              <Label text="&#xf100; " class="fi" />
+              <Label text="{{ power }}" />
+              <Label text="  &#xf108; " class="fi" />
+              <Label text="{{ skill }}" />
+              <Label text="  &#xf107; " class="fi" />
+              <Label text="{{ resistance }}" />
+              <Label text="  &#xf103; " class="fi" />
+              <Label text="{{ armor }}" />
+              <Label text="  &#xf106; " class="fi" />
+              <Label text="{{ firePower }}" />
+            </StackLayout>
+          </StackLayout>
+        </StackLayout>
+      </ListView.itemTemplate>
+    </ListView>
+    <ActivityIndicator busy="{{ isLoading }}" class="activity-indicator" />
+  </GridLayout>
 </Page>

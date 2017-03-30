@@ -23,7 +23,7 @@
     </StackLayout>
     <StackLayout orientation="horizontal" id="available_points_alert" class="alert">
       <Label text="Points Available: " />
-      <Label text="{{ availablePoints - points }}" />
+      <Label text="{{ availablePoints }}" />
     </StackLayout>
     <GridLayout rows="auto, auto, auto, auto, auto" columns="125, *, 40"  class="character-container attribute-selection">
       <Label text="Power" />
