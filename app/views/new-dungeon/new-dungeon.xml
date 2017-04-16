@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="new-character">
   <Page.actionBar>
      <ActionBar title="New Dungeon">
        <ActionBar.actionItems>
@@ -7,13 +7,22 @@
      </ActionBar>
   </Page.actionBar>
   <StackLayout>
-    <GridLayout columns="auto, *" rows="auto, 200">
-      <Image src="{{icon}}" class="form-control-image" />
-      <TextField col="1" hint="Name" text="{{name}}" class="form-control-classic" />
-      <StackLayout row="2" colSpan="2" class="form-control-classic">
-        <Label text="Description" />
-        <TextView text="{{description}}" height="150" />
+    <StackLayout orientation="horizontal" class="character-container">
+      <GridLayout rows="auto" columns="auto">
+        <Image id="avatar" class="dungeon" backgroundImage="{{ icon + 'Large' }}" />
+        <AbsoluteLayout class="avatar-controls">
+          <Label text="&#xf105;" class="fi fi-back fi-primary" tap="onShowPreviousAvatar" />
+          <Label text="&#xf105;" class="fi fi-next fi-primary" tap="onShowNextAvatar" />
+        </AbsoluteLayout>
+      </GridLayout>
+      <StackLayout class="character-info">
+        <TextField hint="Name" text="{{ name }}" col="1" class="text-input" />
+        <TextView hint="Description" text="{{ description }}" row="1" col="1" class="text-view" />
       </StackLayout>
-    </GridLayout>
+    </StackLayout>
+    <StackLayout class="character-container">
+      <Label text="Boss" class="title" />
+      <ListPicker id="monster_picker" items="{{ availableMonsters }}" />
+    </StackLayout>
   </StackLayout>
 </Page>

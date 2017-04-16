@@ -1,5 +1,6 @@
 let firebase = require("nativescript-plugin-firebase");
 let Observable = require("data/observable").Observable;
+let ObservableArray = require("data/observable-array").ObservableArray;
 
 class DungeonViewModel extends Observable {
   constructor(object = {}) {
@@ -8,7 +9,9 @@ class DungeonViewModel extends Observable {
       description: object.description || "",
       latitude: object.latitude || 0,
       longitude: object.longitude || 0,
-      icon: "res://Markers/Castle"
+      availableMonsters: object.availableMonsters || [],
+      icon: "res://Markers/Castle",
+      monsters: []
     });
   }
 
@@ -20,12 +23,13 @@ class DungeonViewModel extends Observable {
 
   save() {
     return firebase.push(
-            "/dungeons",
+            "dungeons",
             {
               name: this.get("name"),
               description: this.get("description"),
               latitude: this.get("latitude"),
-              longitude: this.get("longitude")
+              longitude: this.get("longitude"),
+              monsters: this.get("monsters")
             }
           );
   }
@@ -33,12 +37,12 @@ class DungeonViewModel extends Observable {
   static all() {
     return firebase.query(
             (data) => { },
-            "/dungeons",
+            "dungeons",
             {
               singleEvent: true,
               orderBy: {
                 type: firebase.QueryOrderByType.CHILD,
-                value: 'name'
+                value: "name"
               }
             }
           );

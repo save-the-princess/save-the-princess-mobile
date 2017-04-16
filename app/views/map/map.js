@@ -32,8 +32,14 @@ let hideCard = () => {
             }
           );
         }
+      ).then(
+        () => {
+          userLocation.currentDungeon.set("name", "");
+          userLocation.currentDungeon.set("description", "");
+          userLocation.currentDungeon.set("boss", "");
+          view.animate({ translate: { y: 200, x: 0 }, opacity: 0 });          
+        }
       );
-      view.animate({ translate: { y: 200, x: 0 }, opacity: 0 });
     }
   );
 };
@@ -86,13 +92,13 @@ let selectDungeon = (marker) => {
   page.isDungeonTapped = true;
   let view = page.getViewById("dungeon_card");
   let currentDungeon = dungeons[marker.id];
-  if (view.opacity > 0 && userLocation.currentDungeon.get("name") === currentDungeon.name) {
-    hideCard();
-    return;
-  }
-  userLocation.currentDungeon.set("name", currentDungeon.name);
-  userLocation.currentDungeon.set("description", currentDungeon.description);
-  showCard();
+  hideCard()
+    .then(() => {
+      userLocation.currentDungeon.set("name", currentDungeon.name);
+      userLocation.currentDungeon.set("description", currentDungeon.description);
+      userLocation.currentDungeon.set("boss", currentDungeon.monsters[0].avatar);
+      showCard();
+    });
 };
 
 let gotoCreateDungeon = (args) => {
