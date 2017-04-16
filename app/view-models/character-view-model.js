@@ -50,10 +50,10 @@ class CharacterViewModel extends Observable {
 
   beforeSave() {
     this.errors = [];
-    this.calculate("HealthPoints")
-    this.calculate("MagicPoints")
-    this.validatePresenceOf("name")
-    this.validatePointUsage()
+    this.calculate("HealthPoints");
+    this.calculate("MagicPoints");
+    this.validatePresenceOf("name");
+    this.validatePointUsage();
   }
 
   calculate(attribute) {
