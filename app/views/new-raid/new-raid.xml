@@ -1,5 +1,87 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="new-raid">
+  <Page.actionBar>
+     <ActionBar title="Raid" />
+  </Page.actionBar>
   <StackLayout>
-    <Button text="Start new raid" />
+    <StackLayout class="card-container">
+      <StackLayout class="card">
+        <Label text="{{ dungeon.name }}" class="card-title" />
+        <Label text="{{ dungeon.description }}" class="card-description" />
+      </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="card-container">
+      <StackLayout class="select-character-button">
+        <Button text="Choose a character" tap="onChoosingCharacter" />
+      </StackLayout>
+      <StackLayout orientation="horizontal" id="character" visibility="collapsed">
+        <StackLayout class="avatar avatar-sm">
+          <Image class="avatar-image" src="{{ character.avatar }}" />
+        </StackLayout>
+        <StackLayout orientation="vertical" class="character-list-item">
+          <Label text="{{ character.name }}" class="character-list-item-title" />
+          <GridLayout rows="auto" columns="*, *">
+            <StackLayout orientation="horizontal" class="character-list-item-container">
+              <Label text="HP " />
+              <Label text="{{ character.currentHealthPoints + '/' + character.maxHealthPoints }}" />
+            </StackLayout>
+            <StackLayout orientation="horizontal" col="1">
+              <Label text="MP " />
+              <Label text="{{ character.currentMagicPoints + '/' + character.maxMagicPoints }}" />
+            </StackLayout>
+          </GridLayout>
+          <StackLayout orientation="horizontal">
+            <Label text="&#xf100; " class="fi" />
+            <Label text="{{ character.power }}" />
+            <Label text="  &#xf108; " class="fi" />
+            <Label text="{{ character.skill }}" />
+            <Label text="  &#xf107; " class="fi" />
+            <Label text="{{ character.resistance }}" />
+            <Label text="  &#xf103; " class="fi" />
+            <Label text="{{ character.armor }}" />
+            <Label text="  &#xf106; " class="fi" />
+            <Label text="{{ character.firePower }}" />
+          </StackLayout>
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="card-container">
+      <Label text="VERSUS" class="jumbotron" />
+    </StackLayout>
+
+    <StackLayout orientation="horizontal" class="card-container">
+      <StackLayout class="avatar avatar-sm">
+        <Image class="avatar-monster" src="{{ monster.avatar }}" />
+      </StackLayout>
+      <StackLayout orientation="vertical" class="character-list-item">
+        <Label text="{{ monster.name }}" class="character-list-item-title" />
+        <GridLayout rows="auto" columns="*, *">
+          <StackLayout orientation="horizontal" class="character-list-item-container">
+            <Label text="HP " />
+            <Label text="{{ monster.currentHealthPoints + '/' + monster.maxHealthPoints }}" />
+          </StackLayout>
+          <StackLayout orientation="horizontal" col="1">
+            <Label text="MP " />
+            <Label text="{{ monster.currentMagicPoints + '/' + monster.maxMagicPoints }}" />
+          </StackLayout>
+        </GridLayout>
+        <StackLayout orientation="horizontal">
+          <Label text="&#xf100; " class="fi" />
+          <Label text="{{ monster.power }}" />
+          <Label text="  &#xf108; " class="fi" />
+          <Label text="{{ monster.skill }}" />
+          <Label text="  &#xf107; " class="fi" />
+          <Label text="{{ monster.resistance }}" />
+          <Label text="  &#xf103; " class="fi" />
+          <Label text="{{ monster.armor }}" />
+          <Label text="  &#xf106; " class="fi" />
+          <Label text="{{ monster.firePower }}" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+    <StackLayout class="fab-container">
+      <Button text="&#xf100;" id="fab" class="fab fab-danger" />
+    </StackLayout>
   </StackLayout>
 </Page>

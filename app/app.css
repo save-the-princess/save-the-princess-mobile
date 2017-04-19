@@ -74,6 +74,11 @@
   vertical-align: bottom;
 }
 
+.new-raid .fab-container {
+  horizontal-align: center;
+  vertical-align: bottom;
+}
+
 .fi {
   font-family: "Flaticon";
 }
@@ -115,6 +120,10 @@
 
 .fab-success {
   color: #FFFFFF;
+  background-color: #9FD356;
+}
+
+.selected {
   background-color: #9FD356;
 }
 
@@ -225,6 +234,13 @@
   height: 128;
 }
 
+.avatar-monster {
+  horizontal-align: center;
+  vertical-align: center;
+  width: 128;
+  height: 128;
+}
+
 .avatar-sm .avatar-image {
   transform: translateX(295), scale(8.5);
 }
@@ -322,7 +338,7 @@
   font-weight: bold;
 }
 
-.new-character {
+.new-character, .new-raid {
   background-image: url("res://City");
 }
 
@@ -340,6 +356,14 @@
   padding: 15;
 }
 
+.new-raid .avatar {
+  margin-right: 6;
+}
+
+.new-raid .character-list-item {
+  padding-left: 6;
+}
+
 .character-list-item-title {
   font-weight: bold;
   font-size: 22;
@@ -353,4 +377,26 @@
 .activity-indicator {
   color: #5988FF;
   transform: scale(3);
+}
+
+.new-raid .card-container {
+  opacity: 1;
+  margin-top: 10;
+}
+
+.new-raid .card-description {
+  padding-bottom: 15;
+}
+
+.select-character-button {
+  horizontal-align: center;
+  vertical-align: middle;
+}
+
+.jumbotron {
+  font-style: italic;
+  font-size: 32;
+  font-weight: bold;
+  horizontal-align: center;
+  padding: 15 0;
 }

@@ -31,7 +31,7 @@
       <GridLayout rows="30, 90, 40" columns="250" class="card">
         <Label text="{{ currentDungeon.name }}" class="card-title" textWrap="true" />
         <Label text="{{ currentDungeon.description }}" class="card-description" textWrap="true" row="1" />
-        <Image backgroundImage="{{ currentDungeon.boss }}" class="card-image" row="2" />
+        <Image backgroundImage="{{ currentDungeon.monster.avatar }}" class="card-image" row="2" />
       </GridLayout>
     </AbsoluteLayout>
     <AbsoluteLayout class="fab-container">
