@@ -18,7 +18,8 @@ class CharacterViewModel extends Observable {
       maxHealthPoints: object.maxHealthPoints || 0,
       currentMagicPoints: object.currentMagicPoints || 0,
       maxMagicPoints: object.maxMagicPoints || 0,
-      experience: object.experience || 0
+      experience: object.experience || 0,
+      uid: object.uid
     });
     this.errors = [];
     this.usePoints();
@@ -38,7 +39,19 @@ class CharacterViewModel extends Observable {
   save() {
     this.beforeSave()
     if (!this.get("errors").length) {
-      return firebase.push("characters", this.toJSON());
+      return firebase
+               .getCurrentUser()
+               .then(
+                 (user) => {
+                   let json = this.toJSON();
+                   json.uid = user.uid;
+                   return json;
+                 }
+               )
+               .then((json) => {
+                   return firebase.push("characters", json);
+                 }
+               );
     } else {
       return Promise.reject(this.get("errors")[0]);
     }

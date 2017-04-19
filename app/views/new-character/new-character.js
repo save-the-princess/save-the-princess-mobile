@@ -45,7 +45,6 @@ let load = (args) => {
 }
 
 let done = () => {
-  console.dump(character);
   return character.save().then(
     () => { frame.topmost().goBack(); },
     alert

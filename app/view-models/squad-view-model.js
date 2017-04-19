@@ -11,8 +11,8 @@ class SquadViewModel extends ObservableArray {
   }
 
   all() {
-    return firebase
-      .query(
+    return firebase.getCurrentUser().then((user) => {
+      return firebase.query(
         (data) => {
           for (let key in data.value) {
             this.push(data.value[key]);
@@ -23,10 +23,15 @@ class SquadViewModel extends ObservableArray {
           singleEvent: true,
           orderBy: {
             type: firebase.QueryOrderByType.CHILD,
-            value: "name"
+            value: "uid"
+          },
+          range: {
+            type: firebase.QueryRangeType.EQUAL_TO,
+            value: user.uid
           }
         }
       );
+    })
   }
 }
 
