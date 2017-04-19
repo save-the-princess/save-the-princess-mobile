@@ -36,8 +36,8 @@ let hideCard = () => {
         () => {
           userLocation.currentDungeon.set("name", "");
           userLocation.currentDungeon.set("description", "");
-          userLocation.currentDungeon.set("boss", "");
-          view.animate({ translate: { y: 200, x: 0 }, opacity: 0 });          
+          userLocation.currentDungeon.set("monster", "");
+          view.animate({ translate: { y: 200, x: 0 }, opacity: 0 });
         }
       );
     }
@@ -54,9 +54,10 @@ let startRaid = () => {
   let topmost = frameModule.topmost();
   topmost.navigate({
     moduleName: "views/new-raid/new-raid",
+    context: { dungeon: userLocation.currentDungeon, monster: userLocation.currentDungeon.monster },
     animate: true,
     transition: {
-      name: "slideBottom"
+      name: "slideBottom",
     }
   });
 }
@@ -96,7 +97,7 @@ let selectDungeon = (marker) => {
     .then(() => {
       userLocation.currentDungeon.set("name", currentDungeon.name);
       userLocation.currentDungeon.set("description", currentDungeon.description);
-      userLocation.currentDungeon.set("boss", currentDungeon.monsters[0].avatar);
+      userLocation.currentDungeon.set("monster", currentDungeon.monsters[0]);
       showCard();
     });
 };
