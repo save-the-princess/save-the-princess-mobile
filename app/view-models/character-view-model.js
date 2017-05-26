@@ -57,6 +57,10 @@ class CharacterViewModel extends Observable {
     }
   }
 
+  isAlive() {
+    return this.healthPoints > 0;
+  }
+
   avatarIsBig() {
     return this.avatar == "res://Characters/07";
   }

@@ -24,7 +24,7 @@ exports.onNavigatingTo = (args) => {
 exports.onDone = () => {
   let picker = page.getViewById("monster_picker");
   dungeon.set("monsters", [dungeon.availableMonsters[picker.selectedIndex]]);
-  dungeon.randomizePositionInRadius(0.000275);
+  dungeon.randomizePositionInRadius(0.000825);
   dungeon.save().then(() => {
     let topmost = frame.topmost();
     topmost.goBack();
