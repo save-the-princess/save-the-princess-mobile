@@ -1,20 +1,10 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="new-raid">
   <Page.actionBar>
-     <ActionBar title="Raid" />
+     <ActionBar title="Battle" />
   </Page.actionBar>
   <StackLayout>
     <StackLayout class="card-container">
-      <StackLayout class="card">
-        <Label text="{{ dungeon.name }}" class="card-title" />
-        <Label text="{{ dungeon.description }}" class="card-description" />
-      </StackLayout>
-    </StackLayout>
-
-    <StackLayout class="card-container">
-      <StackLayout class="select-character-button">
-        <Button text="Choose a character" tap="onChoosingCharacter" />
-      </StackLayout>
-      <StackLayout orientation="horizontal" id="character" visibility="collapsed">
+      <StackLayout orientation="horizontal" id="character">
         <StackLayout class="avatar avatar-sm">
           <Image class="avatar-image" src="{{ character.avatar }}" />
         </StackLayout>
@@ -44,10 +34,6 @@
           </StackLayout>
         </StackLayout>
       </StackLayout>
-    </StackLayout>
-
-    <StackLayout class="card-container">
-      <Label text="VERSUS" class="jumbotron" />
     </StackLayout>
 
     <StackLayout orientation="horizontal" class="card-container">
@@ -80,8 +66,13 @@
         </StackLayout>
       </StackLayout>
     </StackLayout>
-    <StackLayout class="fab-container">
-      <Button text="&#xf100;" id="fab" class="fab fab-danger" tap="onStartRaid" />
-    </StackLayout>
-  </StackLayout>
+
+    <ScrollView>
+      <StackLayout class="card-container">
+        <StackLayout id="battle_log" class="card">
+          <Label text="Battle Log" class="card-title" />
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+</StackLayout>
 </Page>

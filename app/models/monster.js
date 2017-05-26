@@ -25,6 +25,10 @@ class Monster extends Observable {
       );
   }
 
+  isAlive() {
+    return this.healthPoints > 0;
+  }
+
   toString() {
     return this.get("name");
   }

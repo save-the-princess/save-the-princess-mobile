@@ -30,9 +30,23 @@ let gotoChooseCharacter = () => {
   );
 };
 
-let SquadView = {
+let startRaid = () => {
+  frame.topmost().navigate({
+    moduleName: "views/battle/battle",
+    context: {
+      character: page.bindingContext.character,
+      monster: page.bindingContext.monster
+    },
+    transition: {
+      name: "fade"
+    }
+  });
+}
+
+let NewRaidView = {
   onNavigatingTo: load,
-  onChoosingCharacter: gotoChooseCharacter
+  onChoosingCharacter: gotoChooseCharacter,
+  onStartRaid: startRaid
 };
 
-exports = _.extend(exports, SquadView);
+exports = _.extend(exports, NewRaidView);
