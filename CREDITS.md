@@ -1,1 +1,1 @@
-MainBackground: https://www.artstation.com/artwork/Rg9xA
+The application's design presented would be impossible without the help of companies and individuals that provided some of the used assets: FreePik\footnote{http://www.freepik.com/} with the icons and logo, Vibrato\footnote{http://p3x774.web.fc2.com/} with the character design, and Wesnoth\footnote{https://www.wesnoth.org/} with the background images. All these assets were used with the permission of theirs respective owners or under the GNU General Public License 2.
